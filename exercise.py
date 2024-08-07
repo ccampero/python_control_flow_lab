@@ -153,3 +153,60 @@ def weather_advice():
 
 # Call the function
 weather_advice()
+
+# Exercise 5: What's the Season?
+#
+# Write a Python function named `determine_season` that figures out the season based on the entered date.
+#
+# Requirements:
+# - The function should first prompt the user to enter the month (as three characters): "Enter the month of the year (Jan - Dec):"
+# - Then, the function should prompt the user to enter the day of the month: "Enter the day of the month:"
+# - Determine the current season based on the date:
+#      - Dec 21 - Mar 19: Winter
+#      - Mar 20 - Jun 20: Spring
+#      - Jun 21 - Sep 21: Summer
+#      - Sep 22 - Dec 20: Fall
+# - Print the season for the entered date in the format: "<Mmm> <dd> is in <season>."
+#
+# Hints:
+# - Use 'in' to check if a string is in a list or tuple.
+# - Adjust the season based on the day of the month when needed.
+# - Ensure to validate input formats and handle unexpected inputs gracefully.
+
+def determine_season():
+    # Your control flow logic goes here
+    seasons = {
+        'Winter': (('Dec', 21), ('Mar', 19)),
+        'Spring': (('Mar', 20), ('Jun', 20)),
+        'Summer': (('Jun', 21), ('Sep', 21)),
+        'Fall': (('Sep', 22), ('Dec', 20)),
+    }
+    month = input("Enter the month of the year (Jan-Dec): ").strip().capitalize()
+    day = input("Enter the day of the month: ").strip()
+    try:
+        day = int(day)
+        if day < 1 or day > 31:
+            raise ValueError("Day must be between 1 and 31.")
+    except ValueError as e:
+        print(f"Invalid input for day: {e}")
+        return
+    if month not in {'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'}:
+        print("Invalid month. Please enter a valid month abbreviation (Jan - Dec).")
+    def date_to_tuple(month, day):
+        month_values = {
+            'Jan': 1, 'Feb': 2, 'Mar': 3, 'Apr': 4, 'May': 5, 'Jun': 6,
+            'Jul': 7, 'Aug': 8, 'Sep': 9, 'Oct': 10, 'Nov': 11, 'Dec': 12
+        }
+        return (month_values[month], day)
+    input_date = date_to_tuple(month, day)
+    for season, ((start_month, start_day), (end_month, end_day)) in seasons.items():
+        start_date = date_to_tuple(start_month, start_day)
+        end_date = date_to_tuple(end_month, end_day)
+        if start_date <= input_date <= end_date or (start_date > end_date and (input_date >= start_date or input_date <= end_date)):
+            print(f"{month} {day:02d} is in {season}.")
+            return
+    print("Date out of range.")
+
+# Call the function
+determine_season()
+
