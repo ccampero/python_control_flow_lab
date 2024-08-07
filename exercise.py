@@ -70,6 +70,86 @@ check_letter()
 
 def check_voting_eligibility():
     # Your control flow logic goes here
-
+    try:
+        age = int(input("Please enter your age: "))
+        if age < 0:
+            print("Invalid input. Age cannot be negative.")
+        else:
+            voting_age = 18
+            if age >= voting_age:
+                print("You are eligible to vote.")
+            else:
+                print("You are not old enough to vote.")
+    except ValueError:
+        print("Invalid input. Please enter a valid number.")
 # Call the function
 check_voting_eligibility()
+
+# Exercise 3: Calculate Dog Years
+#
+# Write a Python function named `calculate_dog_years` that calculates a dog's age in dog years.
+# Fill in the logic to perform the calculation inside the function.
+#
+# Function Details:
+# - Prompt the user to enter a dog's age: "Input a dog's age: "
+# - Calculate the dog's age in dog years:
+#      - The first two years of the dog's life count as 10 dog years each.
+#      - Each subsequent year counts as 7 dog years.
+# - Print the calculated age: "The dog's age in dog years is xx."
+# - Replace 'xx' with the calculated dog years.
+#
+# Hints:
+# - Use the `input()` function to capture user input.
+# - Convert the string input to an integer using `int()`.
+# - Apply conditional logic to perform the correct age calculation based on the dog's age.
+
+def calculate_dog_years():
+    # Your control flow logic goes here
+    try:
+        dog_age = int(input("Input a dog's age: "))
+        if dog_age < 0:
+            print("Invalid input. Age cannot be negative.")
+        else:
+            if dog_age <= 2:
+                dog_years = dog_age * 10
+            else:
+                dog_years = 20 + (dog_age -2) * 7
+            print(f"The dog's age in dog years is {dog_years}.")
+    except ValueError:
+        print("Invalid input. Please enter a valid number.")
+# Call the function
+calculate_dog_years()
+
+# Exercise 4: Weather Advice
+#
+# Write a Python script named `weather_advice` that provides clothing advice based on weather conditions.
+#
+# Requirements:
+# - The script should prompt the user to enter if it is cold (yes/no).
+# - Then, ask if it is raining (yes/no).
+# - Use logical operators to determine clothing advice:
+#   - If it is cold AND raining, print "Wear a waterproof coat."
+#   - If it is cold BUT NOT raining, print "Wear a warm coat."
+#   - If it is NOT cold but raining, print "Carry an umbrella."
+#   - If it is NOT cold AND NOT raining, print "Wear light clothing."
+#
+# Hints:
+# - Use logical operators (`AND`, `OR`, `NOT`) in your if statements to handle multiple conditions.
+
+def weather_advice():
+    # Your control flow logic goes here
+    is_cold = input("Is it cold? (yes/no): ").strip().lower()
+    is_raining = input("Is it raining? (yes/no): ").strip().lower()
+    if is_cold == 'yes' and is_raining == 'yes':
+        print("Wear a waterproof coat.")
+    elif is_cold == 'yes' and is_raining == 'no':
+        print("Wear a warm coat.")
+    elif is_cold == 'no' and is_raining == 'yes':
+        print("Carry an umbrella.")
+    elif is_cold == 'no' and is_raining == 'no':
+        print("Wear light clothing")
+    else:
+        print("Invalid input. Please enter 'yes' or 'no'.")
+
+# Call the function
+weather_advice()
